@@ -162,7 +162,7 @@ const baseUrl = "https://restaurant.michelin.fr/restaurants/france/restaurants-1
 const nbrPages = 35;
 
 
-async function main()
+async function start()
 {
   console.log("get the url of each restaurant...");
   const promiseUrls = [];
@@ -199,7 +199,6 @@ async function main()
 
   console.log(restaurantArray.length.toString() + " restaurants have been scrapped");
   console.log("--\tDONE\t--");
-
 }
 
-main();
+start();
