@@ -1,0 +1,46 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+  ". . title title . ."
+  ". . title title . ."
+  ". . search search . ."
+  ". . allDeals researchButton scrap scrap"
+}
+
+.element{
+  text-align: center;
+  padding: 5%;
+}
+
+.title{
+  grid-area: title;
+  background-color: blue;
+  font-size: 125%;
+}
+
+.search{
+  grid-area: search;
+  background-color: green;
+}
+
+.allDeals{
+  grid-area: allDeals;
+  background-color: grey;
+}
+
+.researchButton{
+  grid-area: researchButton;
+  background-color: yellow;
+}
+
+.scrap{
+  grid-area: scrap;
+  background-color: red;
+}
