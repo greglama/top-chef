@@ -138,3 +138,7 @@ const getLafourchetteData = async path =>
     console.log("---\tDONE\t---");
     return finalList;
 }
+
+module.exports = {
+    getRestaurants: getLafourchetteData
+}

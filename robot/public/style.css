@@ -3,44 +3,109 @@
   padding: 0;
 }
 
+#searchButton {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #4a4dff;
+  border: none;
+  color: white;
+  text-align: center;
+  font-size: 125%;
+  padding: 10%;
+  width: 75%;
+  cursor: pointer;
+}
+
+#searchButton:hover{
+  background-color: rgb(0, 0, 150);
+}
+
+#search{
+  font-size: 200%;
+  width: 90%;
+  height: 100%;
+  padding:3px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.linkAction{
+  color:grey;
+  font-size: 150%;
+  text-decoration: none;
+}
+
+.linkAction:hover {
+  color:rgb(80, 80, 80);
+  text-decoration: underline;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(255, 158, 158);
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  right: 12%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
 .grid {
+  background-color: rgb(239, 247, 253);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+
   grid-template-areas:
-  ". . title title . ."
-  ". . title title . ."
-  ". . search search . ."
-  ". . allDeals researchButton scrap scrap"
+  "title title title title title title"
+  "title title title title title title"
+  ". search search search search ."
+  ". allDeals allDeals . researchButton scrap";
+
 }
 
 .element{
   text-align: center;
-  padding: 5%;
+  border: black;
 }
 
 .title{
   grid-area: title;
-  background-color: blue;
-  font-size: 125%;
+  font-size: 200%;
+  color: rgb(0, 175, 0);
 }
 
 .search{
+  height: 75%;
   grid-area: search;
-  background-color: green;
 }
 
 .allDeals{
   grid-area: allDeals;
-  background-color: grey;
 }
 
 .researchButton{
   grid-area: researchButton;
-  background-color: yellow;
 }
 
 .scrap{
   grid-area: scrap;
-  background-color: red;
 }

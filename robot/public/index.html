@@ -11,16 +11,26 @@
     
     <div class = "grid">
       <div class = "title element">
-        <h1>Deals Spotter</h1>
+        <h1>Great Deals Spotter</h1>
       </div>
 
-      <div class = "search element">search</div>
+      <div class = "search element">
+          <input type="text" id="search" name="Search" placeholder="Type any name, postal code or locality...">
+      </div>
 
-      <div class = "allDeals element">All the deals</div>
+      <div class = "allDeals element">
+        <a class = "linkAction" href=#>all deals</a>
+      </div>
 
-      <div class = "researchButton element">Research</div>
+      <div class = "researchButton element">
+          <button id = "searchButton"><span>GO</span></button>
+      </div>
 
-      <div class = "scrap element">Re-scrap Michelin</div>
+      <div class = "scrap element">
+        <a class="linkAction tooltip" id = "reScrap" href=#>Re-scrap Michelin
+            <span class="tooltiptext">This operation might take a while</span>
+        </a>
+      </div>
     </div>
 
   </body>
