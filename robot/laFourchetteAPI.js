@@ -49,14 +49,14 @@ const getIdFrom = async restaurant =>
     const apiUrl = "https://m.lafourchette.com/api/restaurant-prediction?name=" + name;
 
     let isTimeout = true;
-
     //while we have got a timeout we re-run the request
     while(isTimeout)
     {
         try
         {
             const content = await getJsonFromApi(apiUrl);
-            const result = content.filter(r => restaurant.postalCode === r.address.postal_code);
+            const result = content.filter(r => restaurant.postalCode === r.address.postal_code && 
+                                                r.name.includes(restaurant.name));
 
             isTimeout = false;
             
@@ -80,8 +80,7 @@ const getIdFrom = async restaurant =>
             }
             else
             {
-                console.log("timeout at " + apiUrl);
-                console.log("this request will be re-send\n");
+                console.log("request will be re-send, timeout while getting: " + name );
             }
         }
     }
@@ -114,7 +113,8 @@ const LaFourchetteRestaurant = async MichelinRestaurant =>
     return Object.assign(MichelinRestaurant,
     {
         id: id,
-        offers: offers
+        offers: offers,
+        urlFourchette: "https://www.lafourchette.com/restaurant/name/" + id
     });
 }
 
@@ -126,15 +126,43 @@ const getLafourchetteData = async path =>
     console.log("reading data from " + path + " ...");
     const michelinRestaurantArr = getRestaurantsFromJson(path);
 
-    console.log("get Lafourchette data...");
-    const promiseLafourchette = michelinRestaurantArr.map(r => LaFourchetteRestaurant(r));
+    let lafourchetteRestaurantArr = [];
 
-    console.log("process and wait all the api calls");
-    const lafourchetteRestaurantArr = await Promise.all(promiseLafourchette);
+    console.log("launch queries");
+    let index = 0;
+    while (index < michelinRestaurantArr.length)
+    {
+        const promiseLafourchette = [];
+
+        //launch 10 queries
+        let nbrQueries = 35;
+
+        if(michelinRestaurantArr.length - index + 1 < nbrQueries) nbrQueries = michelinRestaurantArr.length - index;
+
+        for(let i = 0; i < nbrQueries; i++)
+        {
+            promiseLafourchette.push(LaFourchetteRestaurant(michelinRestaurantArr[index]));
+            index ++;
+        }
+        
+        console.log("queries : " + index);
+
+        //resolve queries
+        const lafourchetteRestaurantArr10 = await Promise.all(promiseLafourchette);
+        console.log("last " + nbrQueries + " queries are resolved\n");
+        //add their result
+        lafourchetteRestaurantArr = lafourchetteRestaurantArr.concat(lafourchetteRestaurantArr10);
+    }
+     
 
     console.log("filter to keep the revelant restaurants")
     const finalList = lafourchetteRestaurantArr.filter(r => r.offers !== null).filter(r => r.offers.length != 0);
 
+    console.log(michelinRestaurantArr.length + " restaurants have been process, " + finalList.length + " have been keep");
+    console.clear();
+    console.log("\n\n---------------\n");
+    console.log("list of restaurants with deals :");
+    finalList.map(r => console.log("*\t" + r.name));
     console.log("---\tDONE\t---");
     return finalList;
 }
