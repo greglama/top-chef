@@ -2,36 +2,75 @@
 <html>
   <head>
     <meta charset="utf-8">
+
+    <script src="https://fb.me/react-15.2.0.js"></script>
+    <script src="https://fb.me/react-dom-15.2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
 
     <title>GDS</title>
   </head>
   <body>
-    
-    <div class = "grid">
-      <div class = "title element">
-        <h1>Great Deals Spotter</h1>
-      </div>
 
-      <div class = "search element">
-          <input type="text" id="search" name="Search" placeholder="Type any name, postal code or locality...">
-      </div>
-
-      <div class = "allDeals element">
-        <a class = "linkAction" href=#>all deals</a>
-      </div>
-
-      <div class = "researchButton element">
-          <button id = "searchButton"><span>GO</span></button>
-      </div>
-
-      <div class = "scrap element">
-        <a class="linkAction tooltip" id = "reScrap" href=#>Re-scrap Michelin
-            <span class="tooltiptext">This operation might take a while</span>
-        </a>
-      </div>
+    <div id = "offersDisplay">
     </div>
 
+   <script type = "text/babel">
+
+    const httpGet = theUrl =>{
+
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", theUrl, false);
+      xmlHttp.send( null );
+      return xmlHttp.responseText;
+    }
+
+    class Restaurant extends React.Component{
+      constructor(){
+          super();
+          this.restaurant = restaurantsList[nbrRestaurans];
+          nbrRestaurans++;
+      }
+
+      render(){
+          return(
+          <div className = "restaurantDiv">
+              <h2>{this.restaurant.name}</h2>
+              <h3>{this.restaurant.locality} - {this.restaurant.postalCode}</h3>
+              <a href = {'' + this.restaurant.url}>
+                <img src={'' + this.restaurant.urlImage} alt="michelin-image"></img>
+              </a>
+              <a href = {'' + this.restaurant.urlFourchette}>
+                there is {this.restaurant.offers.length} offer(s)
+              </a>
+          </div>
+          );
+      }
+    }
+
+    class ListOfRestaurant extends React.Component{
+      constructor(){
+          super();
+          this.list = restaurantsList;
+      }
+      render(){
+          let arr = [];
+          this.list.map(r => arr.push(<Restaurant/>));
+          return(
+          <div>{arr}</div>
+          );
+      }
+    }
+
+    //all the restaurants
+    const restaurantsList = JSON.parse(httpGet("http://localhost:3000/api/restaurants"));
+    
+
+    //list of the research
+    let nbrRestaurans = 0;
+
+    ReactDOM.render(<ListOfRestaurant/>, document.getElementById("offersDisplay"));
+   </script> 
   </body>
 </html>
