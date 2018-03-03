@@ -148,7 +148,7 @@ const getLafourchetteData = async path =>
         
         //resolve queries
         const lafourchetteRestaurantArr10 = await Promise.all(promiseLafourchette);
-        console.log(index + "/" + michelinRestaurantArr.length + "have been resolved");
+        console.log(index + "/" + michelinRestaurantArr.length + " have been resolved");
         
         //add their result
         lafourchetteRestaurantArr = lafourchetteRestaurantArr.concat(lafourchetteRestaurantArr10);
@@ -157,7 +157,7 @@ const getLafourchetteData = async path =>
     console.log("filter to keep the revelant restaurants");
     const finalList = lafourchetteRestaurantArr.filter(r => r.offers !== null).filter(r => r.offers.length != 0);
 
-    console.log(michelinRestaurantArr.length + " restaurants have been process, " + finalList.length + " have been keept");
+    console.log(michelinRestaurantArr.length + " restaurants have been process, " + finalList.length + " have been kept");
     console.log("\n\n---------------\n");
     console.log("list of restaurants with deals :");
     finalList.map(r => console.log("*\t" + r.name));

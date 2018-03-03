@@ -183,10 +183,31 @@ async function scrap()
 
   console.log("get the data of each restaurants...")
 
-  //fetch each links one by one to get all the data for each restaurant (1 link => 1 restaurant)
-  const promiseRestaurants = restaurantLinks.map(link => getResaurantFrom(link));
-  const restaurantArray = await Promise.all(promiseRestaurants);
+  //fetch each links by packets to get all the data for each restaurant (1 link => 1 restaurant)
 
+  let restaurantArray = [];
+  let index = 0;
+
+  //for exemple by packet of 35 restaurants at a time
+  let sizePacket = 35;
+
+  while (index < restaurantLinks.length)
+  {
+    let promiseRestaurants = [];
+
+    if(restaurantLinks.length - index + 1 < sizePacket) sizePacket = restaurantLinks.length - index;
+    
+    for(let i = 0; i < sizePacket; i++)
+    {
+      promiseRestaurants.push(getResaurantFrom(restaurantLinks[index]));
+      index ++;
+    }
+    const restaurantArrayPacket = await Promise.all(promiseRestaurants);
+
+    restaurantArray = restaurantArray.concat(restaurantArrayPacket);
+    console.log(index + "/" + restaurantLinks.length + " have been scraped");
+  }
+  
   console.log("convert to json");
 
   //format the objects in JSON to write them in a file
@@ -208,5 +229,3 @@ async function scrap()
 module.exports = {
   scrap: scrap
 }
-
-scrap();
