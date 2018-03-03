@@ -5,9 +5,12 @@ Then it tries to match the restaurants with offers and promotions on the La Four
 ## How could you use it ?
 It's pretty straightforward to use. Open a terminal while on the folder and type 
 ```{sh}
-npm install
+> npm install
 ```
-then type npm run.
+ and then type 
+ ```{sh}
+ > npm run
+ ```
 The server will process all the restaurants and offers, this process usually takes around 30 seconds.
 Then the server will display on the consol : "Server is now listening on port 3000". 
 This means you can safely go to your browser and go to http://localhost:3000/ . 
