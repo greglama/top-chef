@@ -123,12 +123,13 @@ const LaFourchetteRestaurant = async MichelinRestaurant =>
 //if a restaurant is not in the lafourchette data base or if it doesn't have any offer : it won't be on the list
 const getLafourchetteData = async path =>
 {
-    console.log("reading data from " + path + " ...");
+    console.log("reading restaurants data from " + path + " ...");
     const michelinRestaurantArr = getRestaurantsFromJson(path);
 
     let lafourchetteRestaurantArr = [];
 
-    console.log("launch queries");
+    console.log("launch queries...");
+    console.log("getting deals...");
     let index = 0;
     while (index < michelinRestaurantArr.length)
     {
@@ -145,25 +146,22 @@ const getLafourchetteData = async path =>
             index ++;
         }
         
-        console.log("queries : " + index);
-
         //resolve queries
         const lafourchetteRestaurantArr10 = await Promise.all(promiseLafourchette);
-        console.log("last " + nbrQueries + " queries are resolved\n");
+        console.log(index + "/" + michelinRestaurantArr.length + "have been resolved");
+        
         //add their result
         lafourchetteRestaurantArr = lafourchetteRestaurantArr.concat(lafourchetteRestaurantArr10);
     }
      
-
-    console.log("filter to keep the revelant restaurants")
+    console.log("filter to keep the revelant restaurants");
     const finalList = lafourchetteRestaurantArr.filter(r => r.offers !== null).filter(r => r.offers.length != 0);
 
-    console.log(michelinRestaurantArr.length + " restaurants have been process, " + finalList.length + " have been keep");
-    console.clear();
+    console.log(michelinRestaurantArr.length + " restaurants have been process, " + finalList.length + " have been keept");
     console.log("\n\n---------------\n");
     console.log("list of restaurants with deals :");
     finalList.map(r => console.log("*\t" + r.name));
-    console.log("---\tDONE\t---");
+    console.log("\n--\tDONE\t--");
     return finalList;
 }
 

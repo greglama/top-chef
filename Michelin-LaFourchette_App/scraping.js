@@ -162,8 +162,9 @@ const baseUrl = "https://restaurant.michelin.fr/restaurants/france/restaurants-1
 const nbrPages = 35;
 
 
-async function start()
+async function scrap()
 {
+  console.log("Some information may not be found, they will be saved as null");
   console.log("get the url of each restaurant...");
   const promiseUrls = [];
   for(let i = 1; i<= nbrPages; i++)
@@ -197,8 +198,15 @@ async function start()
   fs.appendFileSync('./data/restaurant.json', '');
   fs.writeFileSync('./data/restaurant.json', contentForFile, "utf-8");
 
-  console.log(restaurantArray.length.toString() + " restaurants have been scrapped");
+  console.log(restaurantArray.length.toString() + " restaurants have been scrapped\n");
+  console.log("file saved at './data/restaurant.json'\n");
   console.log("--\tDONE\t--");
+
+  return "./data/restaurant.json";
 }
 
-start();
+module.exports = {
+  scrap: scrap
+}
+
+scrap();

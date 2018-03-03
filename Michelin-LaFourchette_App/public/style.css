@@ -1,0 +1,76 @@
+body{
+	--sub-title-color: rgb(102, 102, 102);
+	--title-color: rgb(69, 73, 91);
+
+  	background-color: rgb(13, 13, 13);
+  	background-image: url("http://blackgirlchefswhites.com/wp-content/uploads/2016/01/toque.jpg");
+  	background-attachment:fixed;
+  	background-position: left;
+  	background-repeat: no-repeat;
+  	background-size: 45%;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+img{
+	width: calc(100% - 65px);
+	border-radius: 3px;
+}
+img:hover{
+  box-shadow: 2px 2px 5px grey;
+}
+
+.restaurantDiv {
+	width: 33.333%;
+    padding: 16px;
+    margin: 10px;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(253, 253, 253, 0.8);
+}
+
+a{
+	display: block;
+	margin-top: 10px;
+	text-align: center;
+  font-family: Corbel;
+	color: black;
+	text-decoration: none;
+}
+div.restaurantDiv a:nth-child(4) {
+	display: inline-block;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+h2{
+  font-family: Corbel;
+  color: var(--title-color);
+}
+
+h3{
+  font-family: Corbel;
+  color: var(--sub-title-color);
+}
+
+.whiteBlock{
+  display: block;
+  background: white;
+  text-align: center;
+  background-size: cover;
+  width:auto;
+  padding: 30%;
+}
+
+.blackTitle{
+  color: black;
+  font-size: 300%;
+  font-family: Corbel;
+}

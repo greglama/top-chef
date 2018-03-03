@@ -1,0 +1,17 @@
+{
+  "name": "michelin-lafourchette_app",
+  "version": "1.0.0",
+  "description": "Simple app to get offers about Michelin restaurant which are starred",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Gregoire Albizzati",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "node-fetch": "^2.0.0"
+  }
+}

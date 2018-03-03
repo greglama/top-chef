@@ -1,5 +1,6 @@
 const express = require('express');
 const laFourchette = require('./laFourchetteAPI.js');
+const scraper = require('./scraping.js');
 
 const app = express();
 app.use(express.static('public'));
@@ -27,15 +28,20 @@ app.get('/api/restaurants', (request, response) =>
     }
 });
 
-//the server start listening when the restaurants have been processed
-laFourchette.getRestaurants("./data/restaurant.json").then(result => {
 
-    restaurants = result;
+scraper.scrap().then(path =>{
 
-    app.listen(3000, function()
-    {
-        console.log("restaurants have been process");
-        console.log("listening on port 3000");
+    //the server start listening when the restaurants have been processed
+    laFourchette.getRestaurants(path).then(result => {
+
+        restaurants = result;
+    
+        app.listen(3000, function()
+        {
+            console.log("restaurants have been process");
+            console.log("listening on port 3000");
+        });
+    
     });
 
-});
+})
