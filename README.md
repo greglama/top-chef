@@ -3,7 +3,8 @@ This application scraps Michelin website in order to get a list (and all the rel
 Then it tries to match the restaurants with offers and promotions on the La Fourchette website. Finally all these data will be display on a website running on a node server.
 
 ## How could you use it ?
-It's pretty straightforward to use. Open a terminal while on the folder and type ```{sh}
+It's pretty straightforward to use. Open a terminal while on the folder and type 
+```{sh}
 npm install
 ```
 then type npm run.
