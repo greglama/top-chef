@@ -207,15 +207,6 @@
     "urlImage": "https://restaurant.michelin.fr/sites/mtpb2c_fr/files/styles/poi_detail_landscape/public/M%C3%A8re_Brazier_Paris%20.jpg?itok=HgyovPQG"
 },
 {
-    "name": "Le Violon d'Ingres",
-    "addresse": "135 Rue Saint-Dominique",
-    "postalCode": "75007",
-    "locality": "Paris",
-    "price": "Prix - De 49 € à 130 €",
-    "url": "https://restaurant.michelin.fr/2aa5u1w/le-violon-dingres-paris-07",
-    "urlImage": "https://restaurant.michelin.fr/sites/mtpb2c_fr/files/styles/poi_detail_landscape/public/4_176.jpg?itok=nz36hiqD"
-},
-{
     "name": "Les Tablettes de Jean-Louis Nomicos",
     "addresse": "16 Avenue Bugeaud",
     "postalCode": "75016",
@@ -223,6 +214,15 @@
     "price": "Prix - De 58 € à 141 €",
     "url": "https://restaurant.michelin.fr/2fdwgd3/les-tablettes-de-jean-louis-nomicos-paris-16",
     "urlImage": "https://restaurant.michelin.fr/sites/mtpb2c_fr/files/styles/poi_detail_landscape/public/WyRmO_SI4yICJoow.jpg?itok=fIcFBe6b"
+},
+{
+    "name": "Le Violon d'Ingres",
+    "addresse": "135 Rue Saint-Dominique",
+    "postalCode": "75007",
+    "locality": "Paris",
+    "price": "Prix - De 49 € à 130 €",
+    "url": "https://restaurant.michelin.fr/2aa5u1w/le-violon-dingres-paris-07",
+    "urlImage": "https://restaurant.michelin.fr/sites/mtpb2c_fr/files/styles/poi_detail_landscape/public/4_176.jpg?itok=nz36hiqD"
 },
 {
     "name": "La Tour des Vents",
